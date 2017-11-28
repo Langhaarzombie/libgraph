@@ -795,11 +795,13 @@ defmodule Graph do
   def add_edge(g, v1, v2, opts \\ [])
 
   def add_edge(%__MODULE__{type: :undirected} = g, v1, v2, opts) when is_list(opts) do
-    if v1 > v2 do
-      do_add_edge(g, v2, v1, opts)
-    else
-      do_add_edge(g, v1, v2, opts)
-    end
+    #if v1 > v2 do
+    #  do_add_edge(g, v2, v1, opts)
+    #else
+    #  do_add_edge(g, v1, v2, opts)
+    #end
+    g = do_add_edge(g, v2, v1, opts)
+    do_add_edge(g, v1, v2, opts)
   end
   def add_edge(%__MODULE__{} = g, v1, v2, opts) when is_list(opts) do
     do_add_edge(g, v1, v2, opts)

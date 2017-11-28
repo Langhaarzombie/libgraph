@@ -71,9 +71,13 @@ defmodule Graph.Pathfinding do
   end
 
   ## Private
-
   defp cost(%Graph{vertices: vs} = g, v1_id, v2_id, hfun) do
     edge_weight(g, v1_id, v2_id) + hfun.(Map.get(vs, v2_id))
+    #try do
+    #  edge_weight(g, v1_id, v2_id) + hfun.(Map.get(vs, v2_id))
+    #rescue
+    #  KeyError -> edge_weight(g, v2_id, v1_id) + hfun.(Map.get(vs, v2_id))
+    #end
   end
 
   defp do_bfs(q, %Graph{out_edges: oe} = g, target_id, %Graph{vertices: vs_tree} = tree, hfun) do
